@@ -685,14 +685,14 @@
     }
 
     function getTrustedResourceUrl(href) {
-      const appOrigin = getAppOrigin();
+      const appContext = getAppContext();
       const isRelativePath = !/^[a-zA-Z][a-zA-Z\d+.-]*:/.test(href) && !href.startsWith("//");
 
       try {
         const url = isRelativePath ? new URL(href, getAppDocumentUrl()) : new URL(href);
 
         if (isRelativePath) {
-          return url.origin === appOrigin ? url.href : "";
+          return appContext.isFileContext || url.origin === appContext.origin ? url.href : "";
         }
 
         return url.protocol === "https:" ? url.href : "";
@@ -703,21 +703,33 @@
 
     function isExternalResourceUrl(href) {
       try {
-        return new URL(href).origin !== getAppOrigin();
+        const appContext = getAppContext();
+        const url = new URL(href);
+        return appContext.isFileContext ? url.protocol !== "file:" : url.origin !== appContext.origin;
       } catch {
         return false;
       }
     }
 
     function getAppOrigin() {
-      const origin = globalThis.location?.origin;
-      return origin && origin !== "null" ? origin : "http://localhost";
+      return getAppContext().origin;
     }
 
     function getAppDocumentUrl() {
-      const href = globalThis.location?.href;
+      return getAppContext().documentUrl;
+    }
+
+    function getAppContext() {
       const origin = globalThis.location?.origin;
-      return href && origin && origin !== "null" ? href : `${getAppOrigin()}/index.html`;
+      const href = globalThis.location?.href;
+      const protocol = globalThis.location?.protocol;
+      const isFileContext = protocol === "file:" || origin === "null";
+
+      return {
+        isFileContext,
+        origin: !isFileContext && origin ? origin : "http://localhost",
+        documentUrl: href || `${!isFileContext && origin ? origin : "http://localhost"}/index.html`
+      };
     }
   </script>
 </body>
