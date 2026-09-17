@@ -712,10 +712,10 @@
 
     function getTrustedResourceUrl(href) {
       const appOrigin = getAppOrigin();
+      const isRelativePath = !/^[a-zA-Z][a-zA-Z\d+.-]*:/.test(href) && !href.startsWith("//");
 
       try {
-        const isRelativePath = /^(\/(?!\/)|\.\/|\.\.\/)/.test(href);
-        const url = isRelativePath ? new URL(href, `${appOrigin}/`) : new URL(href);
+        const url = isRelativePath ? new URL(href, getAppDocumentUrl()) : new URL(href);
 
         if (isRelativePath) {
           return url.origin === appOrigin ? url.href : "";
@@ -738,6 +738,12 @@
     function getAppOrigin() {
       const origin = globalThis.location?.origin;
       return origin && origin !== "null" ? origin : "http://localhost";
+    }
+
+    function getAppDocumentUrl() {
+      const href = globalThis.location?.href;
+      const origin = globalThis.location?.origin;
+      return href && origin && origin !== "null" ? href : `${getAppOrigin()}/index.html`;
     }
   </script>
 </body>
