@@ -735,7 +735,8 @@
     }
 
     function getAppOrigin() {
-      return globalThis.location?.origin || "http://localhost";
+      const origin = globalThis.location?.origin;
+      return origin && origin !== "null" ? origin : "http://localhost";
     }
   </script>
 </body>
