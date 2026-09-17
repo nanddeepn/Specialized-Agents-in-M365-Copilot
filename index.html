@@ -710,10 +710,14 @@
       const isRelativePath = !/^[a-zA-Z][a-zA-Z\d+.-]*:/.test(href) && !href.startsWith("//");
 
       try {
+        if (isRelativePath && !appContext.documentUrl) {
+          return "";
+        }
+
         const url = isRelativePath ? new URL(href, getAppDocumentUrl()) : new URL(href);
 
         if (isRelativePath) {
-          return appContext.isFileContext || url.origin === appContext.origin ? url.href : "";
+          return appContext.isFileContext || (appContext.origin && url.origin === appContext.origin) ? url.href : "";
         }
 
         return url.protocol === "https:" ? url.href : "";
@@ -726,7 +730,11 @@
       try {
         const appContext = getAppContext();
         const url = new URL(href);
-        return appContext.isFileContext ? url.protocol !== "file:" : url.origin !== appContext.origin;
+        if (appContext.isFileContext) {
+          return url.protocol !== "file:";
+        }
+
+        return appContext.origin ? url.origin !== appContext.origin : /^https?:$/.test(url.protocol);
       } catch {
         return false;
       }
@@ -740,12 +748,13 @@
       const origin = globalThis.location?.origin;
       const href = globalThis.location?.href;
       const protocol = globalThis.location?.protocol;
-      const isFileContext = protocol === "file:" || origin === "null";
+      const isFileContext = protocol === "file:";
+      const hasHttpOrigin = origin && origin !== "null";
 
       return {
         isFileContext,
-        origin: !isFileContext && origin ? origin : "http://localhost",
-        documentUrl: href || `${!isFileContext && origin ? origin : "http://localhost"}/index.html`
+        origin: hasHttpOrigin ? origin : "",
+        documentUrl: hasHttpOrigin && href ? href : isFileContext && href ? href : ""
       };
     }
   </script>
