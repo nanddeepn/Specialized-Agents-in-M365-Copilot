@@ -485,7 +485,8 @@
 
     function loadProgress() {
       try {
-        const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+        const rawValue = localStorage.getItem(storageKey);
+        const saved = JSON.parse(rawValue || "{}");
         const completedSteps = Array.isArray(saved.completedSteps)
           ? [...new Set(saved.completedSteps.filter((step) => Number.isInteger(step) && step >= 0 && step < steps.length))]
           : [];
@@ -533,6 +534,7 @@
 
         if (index === currentStep) {
           button.classList.add("active");
+          button.setAttribute("aria-current", "step");
         }
 
         if (isComplete) {
@@ -548,6 +550,21 @@
     }
 
     function renderCurrentStep() {
+      if (!steps.length) {
+        stepMeta.textContent = "Workshop unavailable";
+        stepTitle.textContent = "No workshop steps available yet";
+        stepDescription.textContent = "Add workshop content to guide users through the lab experience.";
+        stepOutcome.textContent = "Once steps are added, users will be able to navigate and track progress here.";
+        stepChecklist.replaceChildren();
+        resourceList.replaceChildren();
+        previousStepButton.disabled = true;
+        nextStepButton.disabled = true;
+        toggleCompleteButton.disabled = true;
+        toggleCompleteButton.textContent = "Mark as complete";
+        saveProgress();
+        return;
+      }
+
       const step = steps[currentStep];
       stepMeta.textContent = `Step ${currentStep + 1} of ${steps.length}`;
       stepTitle.textContent = step.title;
@@ -557,18 +574,24 @@
       resourceList.replaceChildren(...step.resources.map((resource) => createResourceItem(resource)));
       previousStepButton.disabled = currentStep === 0;
       nextStepButton.disabled = currentStep === steps.length - 1;
+      toggleCompleteButton.disabled = false;
       toggleCompleteButton.textContent = progressState.completedSteps.includes(currentStep) ? "Mark as incomplete" : "Mark as complete";
       saveProgress();
     }
 
     function updateProgress() {
       const completeCount = progressState.completedSteps.length;
-      const percentage = Math.round((completeCount / steps.length) * 100);
+      const percentage = steps.length ? Math.round((completeCount / steps.length) * 100) : 0;
       progressSummary.textContent = `${completeCount} of ${steps.length} steps complete`;
       progressTrack.setAttribute("aria-valuenow", String(percentage));
-      progressTrack.setAttribute("aria-valuetext", `${completeCount} of ${steps.length} workshop steps complete`);
+      progressTrack.setAttribute(
+        "aria-valuetext",
+        steps.length ? `${completeCount} of ${steps.length} workshop steps complete` : "No workshop steps available yet"
+      );
       progressBar.style.width = `${percentage}%`;
-      progressMessage.textContent = completeCount === steps.length
+      progressMessage.textContent = !steps.length
+        ? "Workshop content can be added here when the lab steps are ready."
+        : completeCount === steps.length
         ? "Workshop complete. Review any step or restart at your own pace."
         : "Your workshop progress is saved in this browser.";
     }
