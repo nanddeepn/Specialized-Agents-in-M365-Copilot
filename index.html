@@ -323,6 +323,18 @@
       text-decoration: none;
     }
 
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .status-note {
       color: var(--muted);
       margin-bottom: 0;
@@ -669,11 +681,20 @@
         const isExternal = isExternalResourceUrl(trustedUrl);
         link.href = trustedUrl;
         if (isExternal) {
+          const icon = document.createElement("span");
+          const srHint = document.createElement("span");
+
           link.target = "_blank";
           link.rel = "noopener noreferrer";
-          link.setAttribute("aria-label", `${resource.label} (opens in a new tab)`);
+          link.textContent = resource.label;
+          icon.textContent = " ↗";
+          icon.setAttribute("aria-hidden", "true");
+          srHint.textContent = " (opens in a new tab)";
+          srHint.className = "visually-hidden";
+          link.append(icon, srHint);
+        } else {
+          link.textContent = resource.label;
         }
-        link.textContent = isExternal ? `${resource.label} ↗` : resource.label;
         item.append(link);
       } else {
         const text = document.createElement("span");
@@ -709,10 +730,6 @@
       } catch {
         return false;
       }
-    }
-
-    function getAppOrigin() {
-      return getAppContext().origin;
     }
 
     function getAppDocumentUrl() {
