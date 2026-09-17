@@ -729,7 +729,7 @@
           return "";
         }
 
-        const url = isRelativePath ? new URL(href, getAppDocumentUrl()) : new URL(href);
+        const url = isRelativePath ? new URL(href, getAppDocumentBaseUrl()) : new URL(href);
 
         if (isRelativePath) {
           return isSupportedLocalProtocol(url.protocol) && (appContext.isFileContext || (appContext.origin && url.origin === appContext.origin))
@@ -757,8 +757,9 @@
       }
     }
 
-    function getAppDocumentUrl() {
-      return getAppContext().documentUrl;
+    function getAppDocumentBaseUrl() {
+      const documentUrl = getAppContext().documentUrl;
+      return documentUrl ? new URL(".", documentUrl).href : "";
     }
 
     function getAppContext() {
