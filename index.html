@@ -324,7 +324,15 @@
       <section class="progress-card" aria-labelledby="progress-heading">
         <div class="eyebrow" id="progress-heading">Completion</div>
         <strong id="progress-summary">0 of 0 steps complete</strong>
-        <div class="progress-track" aria-hidden="true">
+        <div
+          class="progress-track"
+          id="progress-track"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-labelledby="progress-heading"
+        >
           <div class="progress-value" id="progress-bar"></div>
         </div>
         <p id="progress-message" class="status-note"></p>
@@ -457,6 +465,7 @@
     const stepOutcome = document.getElementById("step-outcome");
     const resourceList = document.getElementById("resource-list");
     const progressSummary = document.getElementById("progress-summary");
+    const progressTrack = document.getElementById("progress-track");
     const progressBar = document.getElementById("progress-bar");
     const progressMessage = document.getElementById("progress-message");
     const previousStepButton = document.getElementById("previous-step");
@@ -505,29 +514,35 @@
         "Resume-friendly progress"
       ];
 
-      summaryTags.innerHTML = summaryItems.map((item) => `<li>${item}</li>`).join("");
+      summaryTags.replaceChildren(...summaryItems.map((item) => createListItem(item)));
     }
 
     function renderNavigation() {
-      stepNav.innerHTML = steps.map((step, index) => {
-        const classes = [
-          index === currentStep ? "active" : "",
-          progressState.completedSteps.includes(index) ? "done" : ""
-        ].filter(Boolean).join(" ");
+      stepNav.replaceChildren(...steps.map((step, index) => {
+        const button = document.createElement("button");
+        const meta = document.createElement("div");
+        const label = document.createElement("strong");
+        const isComplete = progressState.completedSteps.includes(index);
 
-        return `
-          <button class="${classes}" type="button" data-step="${index}">
-            <div class="step-meta">Step ${index + 1}</div>
-            <strong class="step-label">${step.title}</strong>
-          </button>
-        `;
-      }).join("");
+        meta.className = "step-meta";
+        meta.textContent = `Step ${index + 1}`;
+        label.className = "step-label";
+        label.textContent = step.title;
 
-      stepNav.querySelectorAll("button").forEach((button) => {
-        button.addEventListener("click", () => {
-          setCurrentStep(Number(button.dataset.step));
-        });
-      });
+        if (index === currentStep) {
+          button.classList.add("active");
+        }
+
+        if (isComplete) {
+          button.classList.add("done");
+        }
+
+        button.type = "button";
+        button.dataset.step = String(index);
+        button.append(meta, label);
+        button.addEventListener("click", () => setCurrentStep(index));
+        return button;
+      }));
     }
 
     function renderCurrentStep() {
@@ -536,10 +551,8 @@
       stepTitle.textContent = step.title;
       stepDescription.textContent = step.description;
       stepOutcome.textContent = step.outcome;
-      stepChecklist.innerHTML = step.bullets.map((bullet) => `<li>${bullet}</li>`).join("");
-      resourceList.innerHTML = step.resources.map((resource) => `
-        <li><a href="${resource.href}" target="_blank" rel="noreferrer">${resource.label}</a></li>
-      `).join("");
+      stepChecklist.replaceChildren(...step.bullets.map((bullet) => createListItem(bullet)));
+      resourceList.replaceChildren(...step.resources.map((resource) => createResourceItem(resource)));
       previousStepButton.disabled = currentStep === 0;
       nextStepButton.disabled = currentStep === steps.length - 1;
       toggleCompleteButton.textContent = progressState.completedSteps.includes(currentStep) ? "Mark as incomplete" : "Mark as complete";
@@ -550,6 +563,7 @@
       const completeCount = progressState.completedSteps.length;
       const percentage = Math.round((completeCount / steps.length) * 100);
       progressSummary.textContent = `${completeCount} of ${steps.length} steps complete`;
+      progressTrack.setAttribute("aria-valuenow", String(percentage));
       progressBar.style.width = `${percentage}%`;
       progressMessage.textContent = completeCount === steps.length
         ? "Workshop complete. Review any step or restart at your own pace."
@@ -578,6 +592,23 @@
       renderNavigation();
       renderCurrentStep();
       updateProgress();
+    }
+
+    function createListItem(text) {
+      const item = document.createElement("li");
+      item.textContent = text;
+      return item;
+    }
+
+    function createResourceItem(resource) {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = resource.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = resource.label;
+      item.append(link);
+      return item;
     }
   </script>
 </body>
