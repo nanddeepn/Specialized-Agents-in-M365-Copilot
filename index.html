@@ -103,6 +103,9 @@
     .nav-steps {
       display: grid;
       gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
     .nav-steps button {
@@ -285,14 +288,18 @@
       align-items: stretch;
     }
 
-    .resource-list li a {
+    .resource-list li a,
+    .resource-list li span {
       display: block;
-      text-decoration: none;
       border: 1px solid var(--line);
       background: #f8fbff;
       border-radius: 16px;
       padding: 14px 16px;
       line-height: 1.5;
+    }
+
+    .resource-list li a {
+      text-decoration: none;
     }
 
     .status-note {
@@ -340,7 +347,9 @@
         <p id="progress-message" class="status-note"></p>
       </section>
 
-      <nav class="nav-steps" id="step-nav" aria-label="Lab steps"></nav>
+      <nav aria-label="Lab steps">
+        <ul class="nav-steps" id="step-nav"></ul>
+      </nav>
     </aside>
 
     <main class="main">
@@ -522,6 +531,7 @@
 
     function renderNavigation() {
       stepNav.replaceChildren(...steps.map((step, index) => {
+        const item = document.createElement("li");
         const button = document.createElement("button");
         const meta = document.createElement("div");
         const label = document.createElement("strong");
@@ -545,7 +555,8 @@
         button.dataset.step = String(index);
         button.append(meta, label);
         button.addEventListener("click", () => setCurrentStep(index));
-        return button;
+        item.append(button);
+        return item;
       }));
     }
 
@@ -628,13 +639,31 @@
 
     function createResourceItem(resource) {
       const item = document.createElement("li");
-      const link = document.createElement("a");
-      link.href = resource.href;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = resource.label;
-      item.append(link);
+      const trustedUrl = getTrustedResourceUrl(resource.href);
+
+      if (trustedUrl) {
+        const link = document.createElement("a");
+        link.href = trustedUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = resource.label;
+        item.append(link);
+      } else {
+        const text = document.createElement("span");
+        text.textContent = `${resource.label} (link unavailable)`;
+        item.append(text);
+      }
+
       return item;
+    }
+
+    function getTrustedResourceUrl(href) {
+      try {
+        const url = new URL(href, "http://localhost");
+        return url.protocol === "https:" ? url.href : "";
+      } catch {
+        return "";
+      }
     }
   </script>
 </body>
