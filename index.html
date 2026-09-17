@@ -494,6 +494,7 @@
     const progressState = loadProgress();
     let currentStep = normalizeStepIndex(progressState.currentStep ?? 0);
     progressState.currentStep = currentStep;
+    let resourceHintId = 0;
 
     let stepNav;
     let summaryTags;
@@ -701,8 +702,10 @@
           link.target = "_blank";
           link.rel = "noopener noreferrer";
           link.textContent = resource.label;
+          visibleHint.id = `resource-hint-${resourceHintId += 1}`;
           visibleHint.textContent = " (opens in a new tab)";
           visibleHint.className = "resource-hint";
+          link.setAttribute("aria-describedby", visibleHint.id);
           link.append(visibleHint);
         } else {
           link.textContent = resource.label;
@@ -729,7 +732,9 @@
         const url = isRelativePath ? new URL(href, getAppDocumentUrl()) : new URL(href);
 
         if (isRelativePath) {
-          return appContext.isFileContext || (appContext.origin && url.origin === appContext.origin) ? url.href : "";
+          return isSupportedLocalProtocol(url.protocol) && (appContext.isFileContext || (appContext.origin && url.origin === appContext.origin))
+            ? url.href
+            : "";
         }
 
         return url.protocol === "https:" && isTrustedExternalHostname(url.hostname) ? url.href : "";
@@ -772,6 +777,10 @@
 
     function isTrustedExternalHostname(hostname) {
       return ["learn.microsoft.com", "developer.microsoft.com", "www.microsoft.com"].includes(hostname);
+    }
+
+    function isSupportedLocalProtocol(protocol) {
+      return ["http:", "https:", "file:"].includes(protocol);
     }
   </script>
 </body>
