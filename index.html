@@ -597,6 +597,7 @@
 
     function renderCurrentStep() {
       if (!steps.length) {
+        stepNav.replaceChildren();
         stepMeta.textContent = "Workshop unavailable";
         stepTitle.textContent = "No workshop steps available yet";
         stepDescription.textContent = "Add workshop content to guide users through the lab experience.";
@@ -661,6 +662,7 @@
         ? progressState.completedSteps.filter((step) => step !== currentStep)
         : [...progressState.completedSteps, currentStep].sort((left, right) => left - right);
 
+      saveProgress();
       renderNavigation();
       renderCurrentStep();
       updateProgress();
