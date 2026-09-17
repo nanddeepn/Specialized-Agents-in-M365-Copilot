@@ -711,12 +711,16 @@
     }
 
     function getTrustedResourceUrl(href) {
-      if (/^(\/(?!\/)|\.\/|\.\.\/)/.test(href)) {
-        return href;
-      }
+      const appOrigin = getAppOrigin();
 
       try {
-        const url = new URL(href);
+        const isRelativePath = /^(\/(?!\/)|\.\/|\.\.\/)/.test(href);
+        const url = isRelativePath ? new URL(href, `${appOrigin}/`) : new URL(href);
+
+        if (isRelativePath) {
+          return url.origin === appOrigin ? url.href : "";
+        }
+
         return url.protocol === "https:" ? url.href : "";
       } catch {
         return "";
@@ -724,7 +728,15 @@
     }
 
     function isExternalResourceUrl(href) {
-      return href.startsWith("https://");
+      try {
+        return new URL(href).origin !== getAppOrigin();
+      } catch {
+        return false;
+      }
+    }
+
+    function getAppOrigin() {
+      return globalThis.location?.origin || "http://localhost";
     }
   </script>
 </body>
