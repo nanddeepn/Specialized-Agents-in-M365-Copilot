@@ -120,7 +120,8 @@
       transform: translateY(-1px);
       background: rgba(255, 255, 255, 0.11);
       border-color: rgba(255, 255, 255, 0.22);
-      outline: none;
+      outline: 3px solid rgba(191, 219, 254, 0.95);
+      outline-offset: 2px;
     }
 
     .nav-steps button.active {
@@ -255,7 +256,8 @@
     button.action:hover,
     button.action:focus-visible {
       transform: translateY(-1px);
-      outline: none;
+      outline: 3px solid rgba(37, 99, 235, 0.28);
+      outline-offset: 2px;
     }
 
     .primary {
@@ -564,6 +566,7 @@
       const percentage = Math.round((completeCount / steps.length) * 100);
       progressSummary.textContent = `${completeCount} of ${steps.length} steps complete`;
       progressTrack.setAttribute("aria-valuenow", String(percentage));
+      progressTrack.setAttribute("aria-valuetext", `${completeCount} of ${steps.length} workshop steps complete`);
       progressBar.style.width = `${percentage}%`;
       progressMessage.textContent = completeCount === steps.length
         ? "Workshop complete. Review any step or restart at your own pace."
