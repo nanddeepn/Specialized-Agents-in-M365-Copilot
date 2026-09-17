@@ -658,8 +658,12 @@
     }
 
     function getTrustedResourceUrl(href) {
+      if (/^(\/|\.\/|\.\.\/)/.test(href)) {
+        return href;
+      }
+
       try {
-        const url = new URL(href, "http://localhost");
+        const url = new URL(href);
         return url.protocol === "https:" ? url.href : "";
       } catch {
         return "";
