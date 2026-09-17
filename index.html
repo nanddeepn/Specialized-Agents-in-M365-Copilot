@@ -578,7 +578,6 @@
         button.dataset.step = String(index);
         button.append(meta, label);
         button.addEventListener("click", () => setCurrentStep(index));
-        button.addEventListener("keydown", (event) => handleStepNavigationKeydown(event, index));
         item.append(button);
         return item;
       }));
@@ -643,33 +642,6 @@
       updateProgress();
     }
 
-    function handleStepNavigationKeydown(event, index) {
-      let nextIndex = index;
-
-      if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-        nextIndex = Math.min(index + 1, steps.length - 1);
-      } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-        nextIndex = Math.max(index - 1, 0);
-      } else if (event.key === "Home") {
-        nextIndex = 0;
-      } else if (event.key === "End") {
-        nextIndex = steps.length - 1;
-      } else {
-        return;
-      }
-
-      event.preventDefault();
-      setCurrentStep(nextIndex);
-      focusStepButton(nextIndex);
-    }
-
-    function focusStepButton(index) {
-      const buttons = stepNav.querySelectorAll("button");
-      if (buttons[index]) {
-        buttons[index].focus();
-      }
-    }
-
     function toggleCurrentStepCompletion() {
       const completed = progressState.completedSteps.includes(currentStep);
 
@@ -694,12 +666,14 @@
 
       if (trustedUrl) {
         const link = document.createElement("a");
+        const isExternal = isExternalResourceUrl(trustedUrl);
         link.href = trustedUrl;
-        if (isExternalResourceUrl(trustedUrl)) {
+        if (isExternal) {
           link.target = "_blank";
           link.rel = "noopener noreferrer";
+          link.setAttribute("aria-label", `${resource.label} (opens in a new tab)`);
         }
-        link.textContent = resource.label;
+        link.textContent = isExternal ? `${resource.label} ↗` : resource.label;
         item.append(link);
       } else {
         const text = document.createElement("span");
