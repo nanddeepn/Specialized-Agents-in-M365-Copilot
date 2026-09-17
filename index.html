@@ -502,30 +502,50 @@
     let currentStep = normalizeStepIndex(progressState.currentStep ?? 0);
     progressState.currentStep = currentStep;
 
-    const stepNav = document.getElementById("step-nav");
-    const summaryTags = document.getElementById("summary-tags");
-    const stepMeta = document.getElementById("step-meta");
-    const stepTitle = document.getElementById("step-title");
-    const stepDescription = document.getElementById("step-description");
-    const stepChecklist = document.getElementById("step-checklist");
-    const stepOutcome = document.getElementById("step-outcome");
-    const resourceList = document.getElementById("resource-list");
-    const progressSummary = document.getElementById("progress-summary");
-    const progressTrack = document.getElementById("progress-track");
-    const progressBar = document.getElementById("progress-bar");
-    const progressMessage = document.getElementById("progress-message");
-    const previousStepButton = document.getElementById("previous-step");
-    const nextStepButton = document.getElementById("next-step");
-    const toggleCompleteButton = document.getElementById("toggle-complete");
+    let stepNav;
+    let summaryTags;
+    let stepMeta;
+    let stepTitle;
+    let stepDescription;
+    let stepChecklist;
+    let stepOutcome;
+    let resourceList;
+    let progressSummary;
+    let progressTrack;
+    let progressBar;
+    let progressMessage;
+    let previousStepButton;
+    let nextStepButton;
+    let toggleCompleteButton;
 
-    previousStepButton.addEventListener("click", () => setCurrentStep(currentStep - 1));
-    nextStepButton.addEventListener("click", () => setCurrentStep(currentStep + 1));
-    toggleCompleteButton.addEventListener("click", toggleCurrentStepCompletion);
+    document.addEventListener("DOMContentLoaded", initializeApp);
 
-    renderSummary();
-    renderNavigation();
-    renderCurrentStep();
-    updateProgress();
+    function initializeApp() {
+      stepNav = document.getElementById("step-nav");
+      summaryTags = document.getElementById("summary-tags");
+      stepMeta = document.getElementById("step-meta");
+      stepTitle = document.getElementById("step-title");
+      stepDescription = document.getElementById("step-description");
+      stepChecklist = document.getElementById("step-checklist");
+      stepOutcome = document.getElementById("step-outcome");
+      resourceList = document.getElementById("resource-list");
+      progressSummary = document.getElementById("progress-summary");
+      progressTrack = document.getElementById("progress-track");
+      progressBar = document.getElementById("progress-bar");
+      progressMessage = document.getElementById("progress-message");
+      previousStepButton = document.getElementById("previous-step");
+      nextStepButton = document.getElementById("next-step");
+      toggleCompleteButton = document.getElementById("toggle-complete");
+
+      previousStepButton.addEventListener("click", () => setCurrentStep(currentStep - 1));
+      nextStepButton.addEventListener("click", () => setCurrentStep(currentStep + 1));
+      toggleCompleteButton.addEventListener("click", toggleCurrentStepCompletion);
+
+      renderSummary();
+      renderNavigation();
+      renderCurrentStep();
+      updateProgress();
+    }
 
     function loadProgress() {
       try {
@@ -722,7 +742,7 @@
           return appContext.isFileContext || (appContext.origin && url.origin === appContext.origin) ? url.href : "";
         }
 
-        return url.protocol === "https:" ? url.href : "";
+        return url.protocol === "https:" && isTrustedExternalHostname(url.hostname) ? url.href : "";
       } catch {
         return "";
       }
@@ -758,6 +778,10 @@
         origin: hasHttpOrigin ? origin : "",
         documentUrl: hasHttpOrigin && href ? href : isFileContext && href ? href : ""
       };
+    }
+
+    function isTrustedExternalHostname(hostname) {
+      return hostname === "microsoft.com" || hostname.endsWith(".microsoft.com");
     }
   </script>
 </body>
