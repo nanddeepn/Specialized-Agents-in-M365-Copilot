@@ -167,7 +167,6 @@ architecture and governance still matter.
 
 ## References
 
--   Microsoft Support -- Create a Power App for a list:
-    https://support.microsoft.com/en-us/sharepoint/lists/documents-and-library/create-a-power-app-for-a-list
--   Microsoft Learn -- Power Apps vibe:
-    https://learn.microsoft.com/en-us/power-apps/vibe/create-app-data-plan
+- [From SharePoint Lists to Live AI Dashboards with Microsoft 365 Copilot](https://nanddeepnachanblogs.com/posts/2026-08-31-sp-list-live-ai-dashboards/?WT.mc_id=M365-MVP-5003693)
+- [Create a Power App for a list](https://support.microsoft.com/en-us/sharepoint/lists/documents-and-library/create-a-power-app-for-a-list?WT.mc_id=M365-MVP-5003693)
+- [Power Apps vibe](https://learn.microsoft.com/en-us/power-apps/vibe/create-app-data-plan?WT.mc_id=M365-MVP-5003693)

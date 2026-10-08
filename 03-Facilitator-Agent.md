@@ -133,8 +133,21 @@ If document generation is available, try:
 -   State action owners and due dates explicitly.
 -   Tell participants that AI features are being used.
 -   Verify notes before treating them as the official record.
--   Follow organizational recording, transcription, privacy, and
-    compliance policies.
+-   Follow organizational recording, transcription, privacy, and compliance policies.
+
+## Video Tutorial
+
+Before the Meeting: Prepare with Copilot 🗓️
+
+[![Watch the video](https://img.youtube.com/vi/Bi6v2GyyuZE/maxresdefault.jpg)](https://www.youtube.com/watch?v=Bi6v2GyyuZE)
+
+During the Meeting: Real-Time Insights & Automated Notes 📝
+
+[![Watch the video](https://img.youtube.com/vi/LOHhX_yO0OE/maxresdefault.jpg)](https://www.youtube.com/watch?v=LOHhX_yO0OE)
+
+After the Meeting: Recap, Action Items & Follow-Ups ✅
+
+[![Watch the video](https://img.youtube.com/vi/mt1bEwAv_fg/maxresdefault.jpg)](https://www.youtube.com/watch?v=mt1bEwAv_fg)
 
 ## Summary
 
@@ -144,7 +157,5 @@ of AI-generated notes and follow-up.
 
 ## References
 
--   Microsoft Support -- Facilitator in Microsoft Teams meetings:
-    https://support.microsoft.com/en-us/teams/copilot/facilitator-in-microsoft-teams-meetings
--   Microsoft Support -- Meeting options in Teams:
-    https://support.microsoft.com/en-us/teams/meetings/meeting-options-in-microsoft-teams
+- [Facilitator in Microsoft Teams meetings](https://support.microsoft.com/en-us/teams/copilot/facilitator-in-microsoft-teams-meetings?WT.mc_id=M365-MVP-5003693)
+- [Meeting options in Teams](https://support.microsoft.com/en-us/teams/meetings/meeting-options-in-microsoft-teams?WT.mc_id=M365-MVP-5003693)

@@ -140,7 +140,5 @@ process once and make it reusable.
 
 ## References
 
--   Microsoft Learn -- Extend Copilot in SharePoint with skills:
-    https://learn.microsoft.com/en-us/sharepoint/copilot-in-sharepoint-skills
--   Microsoft Learn -- Skills overview for agents:
-    https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/skills-overview
+- [Extend Copilot in SharePoint with skills](https://learn.microsoft.com/en-us/sharepoint/copilot-in-sharepoint-skills?WT.mc_id=M365-MVP-5003693)
+- [Skills overview for agents](https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/skills-overview?WT.mc_id=M365-MVP-5003693)

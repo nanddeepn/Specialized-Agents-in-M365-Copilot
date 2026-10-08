@@ -129,8 +129,11 @@ Before approving an action, ask:
 -   Add only relevant work context.
 -   Break very large assignments into milestones.
 -   Review outputs before approving external actions.
--   Use explicit language such as "draft but do not send" when that is
-    your intent.
+-   Use explicit language such as "draft but do not send" when that is your intent.
+
+## Video Tutorial
+
+[![Watch the video](https://img.youtube.com/vi/a1oGK_H0QQc/maxresdefault.jpg)](https://www.youtube.com/watch?v=a1oGK_H0QQc)
 
 ## Summary
 
@@ -140,9 +143,6 @@ review, and approvals.
 
 ## References
 
--   Microsoft Learn -- Copilot Cowork overview:
-    https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/
--   Microsoft Learn -- Get started with Copilot Cowork:
-    https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/get-started
--   Microsoft Learn -- Use Copilot Cowork:
-    https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/use-cowork
+- [Copilot Cowork overview](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/?WT.mc_id=M365-MVP-5003693)
+- [Get started with Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/get-started?WT.mc_id=M365-MVP-5003693)
+- [Use Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/use-cowork?WT.mc_id=M365-MVP-5003693)

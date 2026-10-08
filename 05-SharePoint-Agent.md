@@ -25,20 +25,11 @@ access.
 
 ## Exercise scenario
 
-Create an **HR Learning Agent** or **Project Knowledge Agent** using a
-workshop SharePoint site.
+Create an **Talent Finder Agent** using a workshop SharePoint site.
 
-Suggested content:
-
--   Employee onboarding guide
--   Leave policy
--   Learning catalog
--   FAQ
--   Project plan
--   Architecture overview
--   Meeting notes
-
-Use fictional/non-sensitive workshop content.
+- Create a SharePoint site.
+- Create a document library or use the out of box "Shared Documents" library.
+- Upload sample resumes from [here](/assets/Resumes/)
 
 ## Exercise 1 -- Create the agent
 
@@ -46,8 +37,7 @@ From the SharePoint site:
 
 1.  Open the site homepage.
 2.  Select **New \> Agent**.
-3.  Alternatively, open a document library/list and use the available
-    **AI actions \> Create an agent** experience.
+3.  Alternatively, open a document library/list and use the available **AI actions \> Create an agent** experience.
 4.  Select the content/scope for the agent.
 5.  Create the agent.
 
@@ -59,41 +49,44 @@ Depending on where you create it, SharePoint stores the agent as an
 
 Use a clear configuration.
 
-**Name:** Contoso Learning Guide
+**Name:** Talent Finder Agent
 
 **Purpose:**
 
-> Help employees find accurate answers about Contoso learning,
-> onboarding, and internal development opportunities using approved
-> SharePoint content.
+> Helps HR and recruitment teams discover suitable candidates from resumes stored in SharePoint. It can search and analyze resumes across different languages and identify candidates based on skills, experience, technologies, roles, education, certifications, and other job-related criteria.
 
-**Behavior/instructions:**
+**Welcome message:**
 
-> Answer using the configured SharePoint sources. Prefer current policy
-> and learning documents. Cite or identify the source used when
-> possible. If the answer is not supported by the configured content,
-> say that you could not find it rather than inventing an answer. Keep
-> answers concise and provide steps when the user asks how to complete a
-> process.
+> Welcome to Talent Finder! 
+> 👋 I can help you discover candidates from the resumes available in SharePoint. Tell me the skills, experience, role, technology, location, or other job-related criteria you're looking for, and I'll help identify relevant candidates.
 
 **Starter prompts:**
 
--   What learning is available for new managers?
--   Summarize the onboarding process for a new employee.
--   Where can I find training about Microsoft 365 Copilot?
--   Compare the learning paths available for technical and non-technical
-    employees.
+> Suggest candidates with SQL experience.
+
+> Find candidates with 5+ years of experience in .NET and Azure.
+
+> Suggest candidates suitable for a Senior Data Engineer role.
+
+**Agent instructions:**
+
+> You are an HR Talent Finder Agent that helps recruiters find suitable candidates from resumes stored in SharePoint.
+> - Search and understand resumes across different languages.
+> - Match candidates based on skills, experience, roles, technologies, certifications, education, and other job-related criteria.
+> - Consider related terminology and skill variations while clearly distinguishing exact and related matches.
+> - Rank candidates based only on evidence available in their resumes.
+> - Present matches with Candidate Name, Relevant Skills, Experience, Role, and Why They Match.
+> - Never invent missing candidate information.
+> - Do not use sensitive or protected personal characteristics when evaluating candidates.
+> - Keep recommendations objective, evidence-based, and easy for recruiters to verify.
+
 
 ## Exercise 3 -- Test grounding
 
-Ask three questions:
+Ask a question:
 
-1.  A question directly answered by a source.
-2.  A question requiring information from two sources.
-3.  A question not answered by any source.
+> We are looking for a Senior Data Engineer with 5+ years of experience, strong SQL skills, Azure experience, and knowledge of Python. Find the best matching candidates and explain why each candidate matches.
 
-The third test is especially important. Evaluate whether the agent
-clearly communicates that the information is unavailable.
 
 ## Exercise 4 -- Permission test
 
@@ -155,7 +148,5 @@ clear purpose.
 
 ## References
 
--   Microsoft Support -- Create an agent in SharePoint:
-    https://support.microsoft.com/en-us/sharepoint/copilot-in-sharepoint/create-an-agent-in-sharepoint
--   Microsoft Support -- Manage agents in SharePoint:
-    https://support.microsoft.com/en-us/sharepoint/copilot-in-sharepoint/manage-agents-in-sharepoint
+- [Create an agent in SharePoint](https://support.microsoft.com/en-us/sharepoint/copilot-in-sharepoint/create-an-agent-in-sharepoint?WT.mc_id=M365-MVP-5003693)
+- [Manage agents in SharePoint](https://support.microsoft.com/en-us/sharepoint/copilot-in-sharepoint/manage-agents-in-sharepoint?WT.mc_id=M365-MVP-5003693)

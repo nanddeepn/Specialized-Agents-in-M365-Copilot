@@ -1,0 +1,16 @@
+Region,Store,FocusArea,Metric,CurrentValue,TargetValue,StrategicGoal,Priority
+North America,New York,Inventory,Stock-out incidents/month,48.0,35.0,Reduce 15%,High
+North America,Toronto,Customer Service,Avg. resolution time (min),12.8,10.5,Reduce 20%,High
+Europe,London,Workforce,Manager admin hours/week,9.5,6.0,Save 3-5 hrs,High
+Europe,Berlin,Inventory,Inventory accuracy (%),92.1,96.0,Improve,High
+Asia Pacific,Singapore,Customer Service,Avg. resolution time (min),10.9,9.0,Reduce 20%,Medium
+Asia Pacific,Sydney,Store Operations,Weekly manual report hours,7.8,4.0,Reduce,High
+Middle East,Dubai,Inventory,Stock-out incidents/month,39.0,30.0,Reduce 15%,High
+Middle East,Riyadh,Workforce,Procedure search time (min/day),31.0,18.0,Reduce,Medium
+Africa,Johannesburg,Store Operations,Operational exceptions/month,27.0,20.0,Reduce,Medium
+Africa,Cape Town,Customer Service,First-contact resolution (%),71.0,80.0,Improve,High
+Latin America,Sao Paulo,Inventory,Inventory accuracy (%),89.8,95.0,Improve,High
+Latin America,Mexico City,Workforce,Manager admin hours/week,10.2,6.5,Save 3-5 hrs,High
+North America,Chicago,Store Operations,Weekly manual report hours,8.4,4.0,Reduce,High
+Europe,Paris,Customer Service,First-contact resolution (%),74.0,82.0,Improve,Medium
+Asia Pacific,Tokyo,Inventory,Stock-out incidents/month,34.0,27.0,Reduce 15%,High

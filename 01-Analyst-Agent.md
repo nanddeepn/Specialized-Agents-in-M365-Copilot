@@ -267,6 +267,10 @@ Example:
     one prompt.
 -   Do not confuse correlation with causation.
 
+## Video Tutorial
+
+[![Watch the video](https://img.youtube.com/vi/NvO5UmR-maQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=NvO5UmR-maQ)
+
 ## Summary
 
 Analyst is most valuable when you have structured data and a business
@@ -276,7 +280,5 @@ and business interpretation.
 
 ## References
 
--   Microsoft Support -- Get started with Analyst in Microsoft Copilot:
-    https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-analyst-in-microsoft-365-copilot
--   Microsoft Support -- Agents built by Microsoft:
-    https://support.microsoft.com/en-us/microsoft-365-copilot/agents-built-by-microsoft
+- [Get started with Analyst in Microsoft Copilot](https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-analyst-in-microsoft-365-copilot?WT.mc_id=M365-MVP-5003693)
+- [Agents built by Microsoft](https://support.microsoft.com/en-us/microsoft-365-copilot/agents-built-by-microsoft?WT.mc_id=M365-MVP-5003693)

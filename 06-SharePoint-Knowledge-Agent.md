@@ -149,7 +149,5 @@ lifecycle requirements before production use.
 
 ## References
 
--   Microsoft Learn -- Get started with Copilot in SharePoint:
-    https://learn.microsoft.com/en-us/sharepoint/copilot-in-sharepoint-get-started
--   Microsoft Support -- Getting started with Build in SharePoint:
-    https://support.microsoft.com/en-us/sharepoint/get-started-with-sharepoint/getting-started-with-build-in-sharepoint
+- [Get started with Copilot in SharePoint](https://learn.microsoft.com/en-us/sharepoint/copilot-in-sharepoint-get-started?WT.mc_id=M365-MVP-5003693)
+- [Create document library with AI](https://learn.microsoft.com/en-us/sharepoint/copilot-in-sharepoint-create-document-library?WT.mc_id=M365-MVP-5003693)

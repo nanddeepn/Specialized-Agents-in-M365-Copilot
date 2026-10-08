@@ -1,0 +1,34 @@
+CONTOSO RETAIL – STORE & EMPLOYEE FEEDBACK
+Workshop Sample – Fictional Data
+
+1. New York – Store Manager
+I spend most Monday mornings combining sales, staffing, inventory, and incident information into a weekly update. A tool that prepares a first draft and highlights exceptions would save significant time, but I need to know where every number came from.
+
+2. London – Department Manager
+Employees frequently ask where to find the latest returns, warranty, and promotion guidance. Search works, but people do not always know the correct document name.
+
+3. Singapore – Customer Service Lead
+New team members take longer to answer product and policy questions. An assistant could help, provided it only uses approved and current information and makes escalation easy.
+
+4. Dubai – Inventory Manager
+We usually notice some shelf availability problems after a store team reports them. Earlier identification of unusual inventory movements could help us investigate before customers are affected.
+
+5. Johannesburg – Store Manager
+We already receive many alerts. Another system generating alerts without prioritization would create more noise. Any AI solution should explain why an issue is important.
+
+6. Sao Paulo – Regional Operations Lead
+Reporting formats differ by store. Regional teams spend time normalizing updates before leadership reviews them. Consistent AI-assisted summaries could help.
+
+7. Toronto – Customer Service Manager
+Speed matters, but a fast wrong answer is worse than a slower correct answer. Customer-facing recommendations need clear sources and human review for sensitive cases.
+
+8. Sydney – Store Manager
+I would support an AI pilot if it reduces administrative work without creating another system that staff need to maintain manually.
+
+COMMON THEMES
+- Reduce repetitive reporting and information searching.
+- Improve inventory exception detection.
+- Provide trusted, source-based answers.
+- Avoid excessive alerts and low-confidence recommendations.
+- Maintain human oversight.
+- Demonstrate measurable time savings before scaling.

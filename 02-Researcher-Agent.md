@@ -26,6 +26,8 @@ comparison, and evidence rather than a quick answer.
 Contoso Retail is considering how AI could improve store operations.
 Leadership wants an evidence-based report rather than a brainstorm.
 
+Download the lab files from [here](/assets/Contoso_Retail_Researcher_Lab_Sample_Files/). 
+
 ## Exercise 1 -- Research a topic
 
 1.  Open Microsoft Copilot.
@@ -140,6 +142,14 @@ deliverable.
 -   Keep confidential organizational content within approved Microsoft
     365 boundaries.
 
+## Video Tutorial
+
+[![Watch the video](https://img.youtube.com/vi/YtFpHY3lBg0/maxresdefault.jpg)](https://www.youtube.com/watch?v=YtFpHY3lBg0)
+
+## Video Tutorial (Analyst Agent vs Researcher Agent ⚖️)
+
+[![Watch the video](https://img.youtube.com/vi/z8WJM5rxIV8/maxresdefault.jpg)](https://www.youtube.com/watch?v=z8WJM5rxIV8)
+
 ## Summary
 
 Researcher is designed for depth. Its value comes from combining
@@ -149,7 +159,5 @@ research question and verify the evidence.
 
 ## References
 
--   Microsoft Support -- Get started with Researcher:
-    https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-researcher-in-microsoft-365-copilot
--   Microsoft Support -- Use model choice in Researcher:
-    https://support.microsoft.com/en-us/office/use-model-choice-in-the-researcher-agent
+- [Get started with Researcher](https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-with-researcher-in-microsoft-365-copilot?WT.mc_id=M365-MVP-5003693)
+- [Use model choice in Researcher](https://support.microsoft.com/en-us/office/use-model-choice-in-the-researcher-agent?WT.mc_id=M365-MVP-5003693)
